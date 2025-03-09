@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Translate5 - English</title>
+    <title>Translate5 - Chinese</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <div class="header-container">
-            <h1>Translate5 - English</h1>
+            <h1>Translate5 - Chinese</h1>
             <select id="languageSelect" class="language-switcher" onchange="switchLanguage(this.value)">
-                <option value="english" selected class="language-option">
+                <option value="english" class="language-option">
                     🇬🇧 English
                 </option>
-                <option value="chinese" class="language-option">
+                <option value="chinese" selected class="language-option">
                     🇨🇳 Chinese
                 </option>
             </select>
@@ -31,23 +31,23 @@
             <button id="translateBtn">Dịch</button>
             <div class="outputs-container">
                 <div class="output-section">
-                    <h3>A1 - Beginner</h3>
+                    <h3>HSK1 - Sơ Cấp 1</h3>
                     <p id="beginnerText" class="translation-result">Bản dịch sẽ hiện ở đây...</p>
                 </div>
                 <div class="output-section">
-                    <h3>A2 - Elementary</h3>
+                    <h3>HSK2 - Sơ Cấp 2</h3>
                     <p id="elementaryText" class="translation-result">Bản dịch sẽ hiện ở đây...</p>
                 </div>
                 <div class="output-section">
-                    <h3>B1 - Intermediate</h3>
+                    <h3>HSK3 - Trung Cấp 1</h3>
                     <p id="intermediateText" class="translation-result">Bản dịch sẽ hiện ở đây...</p>
                 </div>
                 <div class="output-section">
-                    <h3>B2 - Upper Intermediate</h3>
+                    <h3>HSK4 - Trung Cấp 2</h3>
                     <p id="upperIntermediateText" class="translation-result">Bản dịch sẽ hiện ở đây...</p>
                 </div>
                 <div class="output-section">
-                    <h3>C1 - Advanced</h3>
+                    <h3>HSK5 - Cao Cấp</h3>
                     <p id="advancedText" class="translation-result">Bản dịch sẽ hiện ở đây...</p>
                 </div>
             </div>
@@ -56,11 +56,11 @@
     </div>
     <script>
         function switchLanguage(language) {
-            if (language === 'chinese') {
-                window.location.href = 'chinese.html';
+            if (language === 'english') {
+                window.location.href = 'index.html';
             }
         }
     </script>
-    <script src="script.js"></script>
+    <script src="chinese.js"></script>
 </body>
 </html> 

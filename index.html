@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dịch Văn Bản với Gemini AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dịch Văn Bản với Gemini AI</h1>
+        <div class="translation-box">
+            <div class="input-section">
+                <select id="sourceLanguage">
+                    <option value="en">Tiếng Anh</option>
+                    <option value="vi">Tiếng Việt</option>
+                    <option value="ja">Tiếng Nhật</option>
+                    <option value="ko">Tiếng Hàn</option>
+                    <option value="zh">Tiếng Trung</option>
+                </select>
+                <textarea id="sourceText" placeholder="Nhập văn bản cần dịch..."></textarea>
+            </div>
+            <button id="translateBtn">Dịch</button>
+            <div class="output-section">
+                <select id="targetLanguage">
+                    <option value="vi">Tiếng Việt</option>
+                    <option value="en">Tiếng Anh</option>
+                    <option value="ja">Tiếng Nhật</option>
+                    <option value="ko">Tiếng Hàn</option>
+                    <option value="zh">Tiếng Trung</option>
+                </select>
+                <textarea id="translatedText" placeholder="Bản dịch..." readonly></textarea>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

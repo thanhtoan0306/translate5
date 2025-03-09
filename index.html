@@ -11,13 +11,34 @@
         <h1>Dịch Văn Bản Việt-Anh với Gemini AI</h1>
         <div class="translation-box">
             <div class="input-section">
-                <div class="language-label">Tiếng Việt</div>
-                <textarea id="sourceText" placeholder="Nhập văn bản tiếng Việt cần dịch..."></textarea>
+                <div class="language-label">
+                    Tiếng Việt
+                    <span id="charCount">0/300 ký tự</span>
+                </div>
+                <textarea id="sourceText" placeholder="Nhập văn bản tiếng Việt cần dịch (tối đa 300 ký tự)..." maxlength="300"></textarea>
             </div>
             <button id="translateBtn">Dịch sang tiếng Anh</button>
-            <div class="output-section">
-                <div class="language-label">Tiếng Anh</div>
-                <textarea id="translatedText" placeholder="Bản dịch tiếng Anh..." readonly></textarea>
+            <div class="outputs-container">
+                <div class="output-section">
+                    <div class="language-label">Beginner (Người mới bắt đầu)</div>
+                    <textarea id="beginnerText" placeholder="Bản dịch cho người mới bắt đầu..." readonly></textarea>
+                </div>
+                <div class="output-section">
+                    <div class="language-label">Elementary (Sơ cấp)</div>
+                    <textarea id="elementaryText" placeholder="Bản dịch sơ cấp..." readonly></textarea>
+                </div>
+                <div class="output-section">
+                    <div class="language-label">Intermediate (Trung cấp)</div>
+                    <textarea id="intermediateText" placeholder="Bản dịch trung cấp..." readonly></textarea>
+                </div>
+                <div class="output-section">
+                    <div class="language-label">Upper-Intermediate (Trung cấp cao)</div>
+                    <textarea id="upperIntermediateText" placeholder="Bản dịch trung cấp cao..." readonly></textarea>
+                </div>
+                <div class="output-section">
+                    <div class="language-label">Advanced (Nâng cao)</div>
+                    <textarea id="advancedText" placeholder="Bản dịch nâng cao..." readonly></textarea>
+                </div>
             </div>
         </div>
     </div>

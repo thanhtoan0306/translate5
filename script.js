@@ -3,11 +3,9 @@ const API_KEY = 'AIzaSyDOagEi9Dd_8va8hRpOvqqMvJNppvpvpw8';
 
 document.getElementById('translateBtn').addEventListener('click', async () => {
     const sourceText = document.getElementById('sourceText').value;
-    const sourceLanguage = document.getElementById('sourceLanguage').value;
-    const targetLanguage = document.getElementById('targetLanguage').value;
     
     if (!sourceText) {
-        alert('Vui lòng nhập văn bản cần dịch!');
+        alert('Vui lòng nhập văn bản tiếng Việt cần dịch!');
         return;
     }
 
@@ -23,7 +21,7 @@ document.getElementById('translateBtn').addEventListener('click', async () => {
             body: JSON.stringify({
                 contents: [{
                     parts: [{
-                        text: `You are a professional translator. Translate this text from ${sourceLanguage} to ${targetLanguage}. Only return the translated text without any additional explanation or context: ${sourceText}`
+                        text: `You are a professional translator. Translate this Vietnamese text to English. Only return the translated text without any additional explanation or context: ${sourceText}`
                     }]
                 }]
             })
@@ -46,6 +44,6 @@ document.getElementById('translateBtn').addEventListener('click', async () => {
         console.error('Error:', error);
     } finally {
         document.getElementById('translateBtn').disabled = false;
-        document.getElementById('translateBtn').textContent = 'Dịch';
+        document.getElementById('translateBtn').textContent = 'Dịch sang tiếng Anh';
     }
 }); 

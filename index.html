@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dịch Văn Bản Việt-Anh với Gemini AI</title>
+    <title>Translate5</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Dịch Văn Bản Việt-Anh với Gemini AI</h1>
+        <h1>Translate5</h1>
         <div class="translation-box">
             <div class="input-section">
                 <div class="language-label">
@@ -17,30 +18,31 @@
                 </div>
                 <textarea id="sourceText" placeholder="Nhập văn bản tiếng Việt cần dịch (tối đa 300 ký tự)..." maxlength="300"></textarea>
             </div>
-            <button id="translateBtn">Dịch sang tiếng Anh</button>
+            <button id="translateBtn">Dịch</button>
             <div class="outputs-container">
                 <div class="output-section">
-                    <div class="language-label">Beginner (Người mới bắt đầu)</div>
-                    <textarea id="beginnerText" placeholder="Bản dịch cho người mới bắt đầu..." readonly></textarea>
+                    <h3>A1 - Beginner</h3>
+                    <p id="beginnerText" class="translation-result">Bản dịch sẽ hiện ở đây...</p>
                 </div>
                 <div class="output-section">
-                    <div class="language-label">Elementary (Sơ cấp)</div>
-                    <textarea id="elementaryText" placeholder="Bản dịch sơ cấp..." readonly></textarea>
+                    <h3>A2 - Elementary</h3>
+                    <p id="elementaryText" class="translation-result">Bản dịch sẽ hiện ở đây...</p>
                 </div>
                 <div class="output-section">
-                    <div class="language-label">Intermediate (Trung cấp)</div>
-                    <textarea id="intermediateText" placeholder="Bản dịch trung cấp..." readonly></textarea>
+                    <h3>B1 - Intermediate</h3>
+                    <p id="intermediateText" class="translation-result">Bản dịch sẽ hiện ở đây...</p>
                 </div>
                 <div class="output-section">
-                    <div class="language-label">Upper-Intermediate (Trung cấp cao)</div>
-                    <textarea id="upperIntermediateText" placeholder="Bản dịch trung cấp cao..." readonly></textarea>
+                    <h3>B2 - Upper Intermediate</h3>
+                    <p id="upperIntermediateText" class="translation-result">Bản dịch sẽ hiện ở đây...</p>
                 </div>
                 <div class="output-section">
-                    <div class="language-label">Advanced (Nâng cao)</div>
-                    <textarea id="advancedText" placeholder="Bản dịch nâng cao..." readonly></textarea>
+                    <h3>C1 - Advanced</h3>
+                    <p id="advancedText" class="translation-result">Bản dịch sẽ hiện ở đây...</p>
                 </div>
             </div>
         </div>
+        <p class="credit">from thanktoanf with <i class="fas fa-heart"></i></p>
     </div>
     <script src="script.js"></script>
 </body>

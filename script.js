@@ -45,6 +45,7 @@ async function translateText(text, level) {
 
 document.getElementById('translateBtn').addEventListener('click', async () => {
     const sourceText = document.getElementById('sourceText').value;
+    const translateBtn = document.getElementById('translateBtn');
     
     if (!sourceText) {
         alert('Vui lòng nhập văn bản tiếng Việt cần dịch!');
@@ -52,8 +53,12 @@ document.getElementById('translateBtn').addEventListener('click', async () => {
     }
 
     try {
-        document.getElementById('translateBtn').disabled = true;
-        document.getElementById('translateBtn').textContent = 'Đang dịch...';
+        translateBtn.disabled = true;
+
+        // Reset all translation results
+        document.querySelectorAll('.translation-result').forEach(el => {
+            el.textContent = 'Đang dịch...';
+        });
 
         // Dịch song song tất cả các cấp độ
         const translations = await Promise.all([
@@ -66,13 +71,16 @@ document.getElementById('translateBtn').addEventListener('click', async () => {
 
         // Hiển thị kết quả
         translations.forEach(({ id, text }) => {
-            document.getElementById(id).value = text;
+            document.getElementById(id).textContent = text;
         });
     } catch (error) {
         alert('Có lỗi xảy ra: ' + error.message);
         console.error('Error:', error);
+        // Reset error messages
+        document.querySelectorAll('.translation-result').forEach(el => {
+            el.textContent = 'Có lỗi xảy ra khi dịch';
+        });
     } finally {
-        document.getElementById('translateBtn').disabled = false;
-        document.getElementById('translateBtn').textContent = 'Dịch sang tiếng Anh';
+        translateBtn.disabled = false;
     }
 }); 

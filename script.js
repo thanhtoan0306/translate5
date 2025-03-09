@@ -15,7 +15,16 @@ const levelInstructions = {
     advanced: "Translate this Vietnamese text to advanced English, using rich vocabulary, idiomatic expressions, and sophisticated sentence structures."
 };
 
-async function translateText(text, level) {
+async function translateAllLevels(text) {
+    const prompt = `You are a professional translator. Translate the following Vietnamese text into English with 5 different levels. Return exactly in this format:
+A1: [A1 translation using very simple English, basic vocabulary, and short sentences]
+A2: [A2 translation using simple English with slightly more advanced vocabulary]
+B1: [B1 translation using standard English with moderate vocabulary]
+B2: [B2 translation using more sophisticated English and complex sentences]
+C1: [C1 translation using advanced English with rich vocabulary and idiomatic expressions]
+
+Vietnamese text to translate: ${text}`;
+
     const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=' + API_KEY, {
         method: 'POST',
         headers: {
@@ -24,7 +33,7 @@ async function translateText(text, level) {
         body: JSON.stringify({
             contents: [{
                 parts: [{
-                    text: `You are a professional translator. ${levelInstructions[level]} Only return the translated text without any additional explanation or context: ${text}`
+                    text: prompt
                 }]
             }]
         })
@@ -37,10 +46,30 @@ async function translateText(text, level) {
 
     const data = await response.json();
     
-    if (data.candidates && data.candidates[0].content.parts[0].text) {
-        return data.candidates[0].content.parts[0].text.trim();
+    if (!data.candidates || !data.candidates[0].content.parts[0].text) {
+        throw new Error('Không nhận được kết quả dịch');
     }
-    throw new Error('Không nhận được kết quả dịch');
+
+    const result = data.candidates[0].content.parts[0].text.trim();
+    const translations = {
+        'beginnerText': '',
+        'elementaryText': '',
+        'intermediateText': '',
+        'upperIntermediateText': '',
+        'advancedText': ''
+    };
+
+    // Parse the result
+    const lines = result.split('\n');
+    lines.forEach(line => {
+        if (line.startsWith('A1:')) translations.beginnerText = line.substring(3).trim();
+        if (line.startsWith('A2:')) translations.elementaryText = line.substring(3).trim();
+        if (line.startsWith('B1:')) translations.intermediateText = line.substring(3).trim();
+        if (line.startsWith('B2:')) translations.upperIntermediateText = line.substring(3).trim();
+        if (line.startsWith('C1:')) translations.advancedText = line.substring(3).trim();
+    });
+
+    return translations;
 }
 
 document.getElementById('translateBtn').addEventListener('click', async () => {
@@ -60,18 +89,12 @@ document.getElementById('translateBtn').addEventListener('click', async () => {
             el.textContent = 'Đang dịch...';
         });
 
-        // Dịch song song tất cả các cấp độ
-        const translations = await Promise.all([
-            translateText(sourceText, 'beginner').then(text => ({ id: 'beginnerText', text })),
-            translateText(sourceText, 'elementary').then(text => ({ id: 'elementaryText', text })),
-            translateText(sourceText, 'intermediate').then(text => ({ id: 'intermediateText', text })),
-            translateText(sourceText, 'upperIntermediate').then(text => ({ id: 'upperIntermediateText', text })),
-            translateText(sourceText, 'advanced').then(text => ({ id: 'advancedText', text }))
-        ]);
+        // Gọi API một lần và nhận về tất cả các bản dịch
+        const translations = await translateAllLevels(sourceText);
 
         // Hiển thị kết quả
-        translations.forEach(({ id, text }) => {
-            document.getElementById(id).textContent = text;
+        Object.entries(translations).forEach(([id, text]) => {
+            document.getElementById(id).textContent = text || 'Không nhận được kết quả dịch';
         });
     } catch (error) {
         alert('Có lỗi xảy ra: ' + error.message);
